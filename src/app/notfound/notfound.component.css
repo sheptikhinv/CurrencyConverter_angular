@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    text-align: center;
+}
+
+p, a, button {
+    padding: 25px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 36px;
+    color: black;
+}
+
+.toMain button {
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    color: black;
+    padding: 9px 25px;
+    background-color: #F5AB35;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
