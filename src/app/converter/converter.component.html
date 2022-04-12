@@ -1,4 +1,16 @@
 <div class="converter-form">
-    <input type="number" name="input1" min = "0" [(ngModel)]="input1"/>
-    {{ input1 * 2 }}
+    <select [(ngModel)]="currency1" (change)="onOptionChange()">
+        <option value="" disabled selected>Валюта</option>
+        <option *ngFor="let o of options">
+           {{o.name}}
+        </option>
+     </select>
+    <input name="input1" min = "0" [(ngModel)]="input1" (keyup)="keyUp1()"/>
+    <input name="input1" min = "0" [(ngModel)]="input2" (keyup)="keyUp2()"/>
+    <select [(ngModel)]="currency2">
+        <option value="" disabled selected>Валюта</option>
+        <option *ngFor="let i of options">
+           {{i.name}}
+        </option>
+     </select>
 </div>
