@@ -1,7 +1,7 @@
 <div class="converter-form">
     <select [(ngModel)]="currency1" (change)="onOptionChange()">
         <option value="" disabled selected>Валюта</option>
-        <option *ngFor="let o of options">
+        <option *ngFor="let o of valutesCode">
            {{o}}
         </option>
      </select>
@@ -9,7 +9,7 @@
     <input name="input1" min = "0" [(ngModel)]="input2" (keyup)="keyUp2()"/>
     <select [(ngModel)]="currency2" (change)="onOptionChange()">
         <option value="" disabled selected>Валюта</option>
-        <option *ngFor="let i of options">
+        <option *ngFor="let i of valutesCode">
            {{i}}
         </option>
      </select>

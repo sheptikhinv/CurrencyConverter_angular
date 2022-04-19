@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { Valutes } from '../valutes';
 import { GetValutesService } from '../get-valutes.service';
 
 
@@ -13,43 +11,37 @@ import { GetValutesService } from '../get-valutes.service';
 })
 export class ConverterComponent implements OnInit {
 
-  input1 : number = 0;
-  input2 : number = 0;
-  coeffiency : number = 1;
+  input1: number = 0;
+  input2: number = 0;
+  coeffiency: number = 1;
 
   currency1: string = '';
   currency2: string = '';
-  valutes : Valutes;
 
-  array : any;
+  array: any;
 
-  options = ["RUB", "USD", "EUR", "JPY", "CNY"]
+  allValutes : any[][] = this.getvalutes.getValutes();
+  valutesCode : string[] = this.allValutes[0];
+  valutesValue : number[] = this.allValutes[1];
 
-  keyUp1(){
+  keyUp1() {
     this.input2 = this.input1 * this.coeffiency;
-    console.warn(this.coeffiency);
   }
 
-  keyUp2(){
+  keyUp2() {
     this.input1 = this.input2 / this.coeffiency;
-    console.warn(this.coeffiency);
   }
 
-  onOptionChange(){
-    if (this.currency1 != "Валюта" && this.currency2 != "Валюта"){
-      this.coeffiency = Number((this.valutes.getValue(this.currency1) / this.valutes.getValue(this.currency2)).toFixed(2));
-      console.warn(this.valutes.getValue(this.currency1), this.valutes.getValue(this.currency2));
+  onOptionChange() {
+    if (this.currency1 != "Валюта" && this.currency2 != "Валюта") {
+      this.coeffiency = Number((this.valutesValue[this.valutesCode.indexOf(this.currency1)] / this.valutesValue[this.valutesCode.indexOf(this.currency2)]).toFixed(2));
     }
   }
 
   constructor(private getvalutes: GetValutesService) { }
 
   ngOnInit(): void {
-    this.getvalutes.get().subscribe(data =>{
-      this.array = data;
 
-      this.valutes = new Valutes(1, this.array.Valute.USD.Value, this.array.Valute.EUR.Value, this.array.Valute.JPY.Value, this.array.Valute.CNY.Value);
-    })
   }
 
 }
