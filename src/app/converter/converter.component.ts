@@ -18,23 +18,23 @@ export class ConverterComponent implements OnInit {
   currency1: string = '';
   currency2: string = '';
 
-  array: any;
-
-  allValutes : any[][] = this.getvalutes.getValutes();
-  valutesCode : string[] = this.allValutes[0];
-  valutesValue : number[] = this.allValutes[1];
+  secret : any[][] = this.getvalutes.getValutes();
+  secret2 : string[] = this.secret[0];
+  secret3 : number[] = this.secret[1];
 
   keyUp1() {
     this.input2 = this.input1 * this.coeffiency;
+    console.warn(this.coeffiency);
   }
 
   keyUp2() {
     this.input1 = this.input2 / this.coeffiency;
+    console.warn(this.coeffiency);
   }
 
   onOptionChange() {
     if (this.currency1 != "Валюта" && this.currency2 != "Валюта") {
-      this.coeffiency = Number((this.valutesValue[this.valutesCode.indexOf(this.currency1)] / this.valutesValue[this.valutesCode.indexOf(this.currency2)]).toFixed(2));
+      this.coeffiency = Number((this.secret3[this.secret2.indexOf(this.currency1)] / this.secret3[this.secret2.indexOf(this.currency2)]).toFixed(2));
     }
   }
 
