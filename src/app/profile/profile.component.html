@@ -1,0 +1,22 @@
+<form class="form" [formGroup]="authForm" *ngIf="this.authState == 'registration' or this.authState == 'failed'">
+    <div class = "form-group">
+        <label for="name">Имя</label>
+        <input id="name" type="text" name="name" [formControlName]="'username'">
+        <div class="form-error" *ngIf="authForm.controls['username'].invalid && authForm.controls['username'].touched">
+            Обязательно для заполнения!
+        </div>
+    </div>
+    <div class = "form-group">
+        <label for="password">Пароль</label>
+        <input id="password" type="password" name="password" [formControlName]="'password'">
+        <div class="form-error" *ngIf="authForm.controls['password'].invalid && authForm.controls['password'].touched">
+            Обязательно для заполнения!
+        </div>
+    </div>
+
+    <div class="send">
+        <button type="submit" [disabled]="authForm.invalid" (click)="register(this.authForm)">Зарегистрироваться</button>
+        <button type="submit" [disabled]="authForm.invalid" (click)="login(this.authForm)">Войти</button>
+    </div>
+</form>
+<button type= "submit" *ngIf="this.authState == 'authenticated'" (click)="exit()">Выйти</button>

@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeAppComponent } from './home-app/home-app.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ConverterComponent } from './converter/converter.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { LoginComponent } from './login/login.component';
     HomeAppComponent,
     NotfoundComponent,
     ConverterComponent,
-    RegistrationComponent,
-    LoginComponent
+    ProfileComponent
   ],
   imports: [
     FormsModule,
