@@ -9,6 +9,7 @@ import { HomeAppComponent } from './home-app/home-app.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ConverterComponent } from './converter/converter.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CookieService } from 'ng2-cookies';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,9 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [
     AppComponent
   ]

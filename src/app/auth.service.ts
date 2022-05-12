@@ -49,5 +49,3 @@ export class AuthService {
       this.http.post('http://127.0.0.1:8000/auth/token/logout', token, {headers : header}).subscribe(answer => console.log(answer))
     }
 }
-
-// ПОКА ЧТО НЕ РЕАЛИЗОВАНО ДО КОНЦА

@@ -1,8 +1,8 @@
-input.ng-touched.ng-invalid {
+input.ng-touched.ng-invalid .form-field{
     border: solid red 2px;
 }
 
-input.ng-touched.ng-valid {
+input.ng-touched.ng-valid .form-field{
     border: solid green 2px;
 }
 
@@ -17,4 +17,12 @@ label {
 button {
     margin: 0 auto;
     display: block;
-  }
+}
+
+.exchange {
+    display: inline-block;
+}
+
+.exchange-group {
+    margin-bottom: 10px;
+}
