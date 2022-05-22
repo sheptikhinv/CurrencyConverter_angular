@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GetValutesService } from '../get-valutes.service';
+import { GetValutesService } from '../../services/get-valutes.service';
 import { CookieService } from 'ng2-cookies';
-import { ExchangesService } from '../exchanges.service';
+import { ExchangesService } from '../../../user/services/exchanges.service';
 
 
 @Component({
@@ -25,18 +25,20 @@ export class ConverterComponent implements OnInit {
   valutes : Map<any, any>;
 
   keyUp1() {
-    this.input2 = this.input1 * this.coeffiency;
-    console.warn(this.coeffiency);
+    if (this.currency1 != "Валюта" && this.currency1 != "" && this.currency2 != "Валюта" && this.currency2 != ""){
+      this.input2 = Number((this.input1 * this.coeffiency).toFixed(2));
+    }
   }
 
   keyUp2() {
-    this.input1 = this.input2 / this.coeffiency;
-    console.warn(this.coeffiency);
+    if (this.currency1 != "Валюта" && this.currency1 != "" && this.currency2 != "Валюта" && this.currency2 != ""){
+      this.input1 = Number((this.input2 / this.coeffiency).toFixed(2));
+    }  
   }
 
   onOptionChange() {
     if (this.currency1 != "Валюта" && this.currency2 != "Валюта") {
-      this.coeffiency = Number((this.valutes.get(this.currency1) / this.valutes.get(this.currency2)).toFixed(2));
+      this.coeffiency = this.valutes.get(this.currency1) / this.valutes.get(this.currency2);
     }
   }
 

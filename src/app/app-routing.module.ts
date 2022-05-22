@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConverterComponent } from './converter/converter.component';
-import { HomeAppComponent } from './home-app/home-app.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeAppComponent } from './pages/home-app/home-app.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { ProfileComponent } from './children/user/pages/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeAppComponent},
-  { path: 'converter', component: ConverterComponent},
-  { path: 'profile', component : ProfileComponent},
+  { path: 'converter', loadChildren: () => import('./children/convertations/convertations.module').then(m => m.ConvertationsModule)},
+  { path: 'profile', loadChildren: () => import('./children/user/user.module').then(m => m.UserModule)},
   { path: '**', component: NotfoundComponent}
 ];
 

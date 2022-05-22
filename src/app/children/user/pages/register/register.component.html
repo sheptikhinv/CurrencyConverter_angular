@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="authForm" *ngIf="this.authState == 'registration' or this.authState == 'failed'">
+<form class="form" [formGroup]="authForm">
     <div class = "form-group">
         <label for="name">Имя</label>
         <input id="name" class="form-field" type="text" name="name" [formControlName]="'username'">
@@ -16,17 +16,6 @@
 
     <div class="send">
         <button type="submit" [disabled]="authForm.invalid" (click)="register(this.authForm)">Зарегистрироваться</button>
-        <button type="submit" [disabled]="authForm.invalid" (click)="login(this.authForm)">Войти</button>
     </div>
 </form>
-<button type= "submit" *ngIf="this.authState == 'authenticated'" (click)="exit()">Выйти</button>
-
-<div class="exchanges">
-    <div class="exchange-group" *ngFor="let item of exchanges1; let i = index" id="{{i}}">
-        <label class="exchange">{{this.exchanges1[i]}}</label>
-        <input class="exchange" [(ngModel)]="inputs[i]" (keyup)="keyUp1()" name="input1" min = "0"/>
-        <input class="exchange" [(ngModel)]="inputs2[i]" (keyup)="keyUp2()" name="input1" min = "0"/>
-        <label class="exchange">{{this.exchanges2[i]}}</label>
-        <button class="exchange" id="{{i}}" (click)="remove($event)">X</button>
-    </div>
-</div>
+<a href="/profile/login">Уже есть аккаунт?</a>

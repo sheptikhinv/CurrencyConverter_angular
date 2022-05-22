@@ -1,0 +1,11 @@
+<button type="submit" (click)="exit()">Выйти</button>
+
+<div class="exchanges">
+    <div class="exchange-group" *ngFor="let item of exchanges1; let i = index" id="{{i}}">
+        <label class="exchange">{{this.exchanges1[i]}}</label>
+        <input class="exchange" [(ngModel)]="inputs[i]" (keyup)="keyUp1()" name="input1" min = "0"/>
+        <input class="exchange" [(ngModel)]="inputs2[i]" (keyup)="keyUp2()" name="input1" min = "0"/>
+        <label class="exchange">{{this.exchanges2[i]}}</label>
+        <button class="exchange" id="{{i}}" (click)="remove($event)">X</button>
+    </div>
+</div>

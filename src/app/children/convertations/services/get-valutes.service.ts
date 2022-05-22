@@ -14,20 +14,15 @@ export class GetValutesService {
   }
 
   public getValutes() : Map<any, any>{
-    // var result : any[][] = [["RUB"], [1]];
-    var result2 = new Map()
-    result2.set("RUB", 1)
+    var result = new Map()
+    result.set("RUB", 1)
     this.get().subscribe(answer =>{
       let data : any;
       data = answer;
-      // let i = 1;
       for (let v in data.Valute){
-        result2.set(v, data.Valute[v].Value / data.Valute[v].Nominal)
-        // result[0][i] = v;
-        // result[1][i] = data.Valute[v].Value / data.Valute[v].Nominal;
-        // i = i + 1;
+        result.set(v, data.Valute[v].Value / data.Valute[v].Nominal)
       }
     })
-    return result2;
+    return result;
   }
 }
