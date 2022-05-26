@@ -12,7 +12,7 @@ import { ExchangesService } from '../../../user/services/exchanges.service';
 })
 export class ConverterComponent implements OnInit {
 
-  authState : String;
+  authState : boolean;
   token : string;
 
   input1: number = 0;
@@ -22,7 +22,8 @@ export class ConverterComponent implements OnInit {
   currency1: string = '';
   currency2: string = '';
 
-  valutes : Map<any, any>;
+  valutes : {[key : string] : number};
+  keys : string[];
 
   keyUp1() {
     if (this.currency1 != "Валюта" && this.currency1 != "" && this.currency2 != "Валюта" && this.currency2 != ""){
@@ -38,7 +39,7 @@ export class ConverterComponent implements OnInit {
 
   onOptionChange() {
     if (this.currency1 != "Валюта" && this.currency2 != "Валюта") {
-      this.coeffiency = this.valutes.get(this.currency1) / this.valutes.get(this.currency2);
+      this.coeffiency = this.valutes[this.currency1] / this.valutes[this.currency2];
     }
   }
 
@@ -49,12 +50,15 @@ export class ConverterComponent implements OnInit {
   constructor(private getvalutes: GetValutesService, private cookieService : CookieService, private exchangesService : ExchangesService) { }
 
   ngOnInit(): void {
-    this.valutes = this.getvalutes.getValutes();
+    this.getvalutes.getValutes().subscribe(r => {
+      this.valutes = r;
+      this.keys = Object.keys(r);
+    })
     if (this.cookieService.check("token")){
-      this.authState = "authenticated";
+      this.authState = true;
       this.token = this.cookieService.get("token");
     }
-    else this.authState = "none";
+    else this.authState = false;
   }
 
 }

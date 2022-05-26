@@ -1,7 +1,7 @@
 <div class="converter-form">
     <select [(ngModel)]="currency1" (change)="onOptionChange()">
         <option value="" disabled selected>Валюта</option>
-        <option *ngFor="let item of valutes.keys()">
+        <option *ngFor="let item of keys">
            {{item}}
         </option>
      </select>
@@ -9,10 +9,10 @@
     <input name="input1" min = "0" [(ngModel)]="input2" (keyup)="keyUp2()"/>
     <select [(ngModel)]="currency2" (change)="onOptionChange()">
         <option value="" disabled selected>Валюта</option>
-        <option *ngFor="let item of valutes.keys()">
+        <option *ngFor="let item of keys">
            {{item}}
         </option>
      </select>
 
-     <button type="submit" (click)="toFavourite(this.currency1, this.currency2, this.token)" [disabled]="authState=='none' || currency1 == 'Валюта1' && currency2 == 'Валюта2'">+</button>
+     <button type="submit" (click)="toFavourite(this.currency1, this.currency2, this.token)" [disabled]="authState==false || currency1 == 'Валюта1' && currency2 == 'Валюта2'">+</button>
 </div>

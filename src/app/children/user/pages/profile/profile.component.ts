@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   coeffiences : number[];
 
-  valutes = this.getValutes.getValutes();
+  valutes : {[key : string] : number};
   inputs : Number[] = [];
   inputs2 : Number[] = [];
 
@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit {
   constructor(private exchangesService : ExchangesService, private cookieService: CookieService, private authService : AuthService, private getValutes : GetValutesService, private router:Router) { }
 
   ngOnInit(): void {
+    this.getValutes.getValutes().subscribe(r => this.valutes = r);
     console.log(this.cookieService.get("token"));
     this.token = this.cookieService.get("token");
     let exchanges = this.exchangesService.get(this.token).subscribe(r => {
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
       this.exchanges2 = data[1];
       let coeffiences = [];
       for(let j = 0; j < this.exchanges1.length; j++){
-        coeffiences[j] = (Number((this.valutes.get(this.exchanges1[j]) / this.valutes.get(this.exchanges2[j])).toFixed(2)));
+        coeffiences[j] = (Number((this.valutes[this.exchanges1[j]] / this.valutes[this.exchanges2[j]]).toFixed(2)));
       }
       this.coeffiences = coeffiences;
       });

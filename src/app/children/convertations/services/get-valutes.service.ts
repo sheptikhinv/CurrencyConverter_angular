@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,17 @@ export class GetValutesService {
     return this.http.get(url) ;
   }
 
-  public getValutes() : Map<any, any>{
-    var result = new Map()
-    result.set("RUB", 1)
+  public getValutes() : Observable<{[key : string] : number}>{
+    var subject = new Subject<{[key : string] : number}>();
+    let result : {[key : string] : number} = {"RUB" : 1};
     this.get().subscribe(answer =>{
       let data : any;
       data = answer;
       for (let v in data.Valute){
-        result.set(v, data.Valute[v].Value / data.Valute[v].Nominal)
+        result[v] = data.Valute[v].Value / data.Valute[v].Nominal;
       }
+      subject.next(result);
     })
-    return result;
+    return subject.asObservable();
   }
 }
