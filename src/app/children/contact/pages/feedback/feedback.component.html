@@ -1,10 +1,24 @@
-<p>feedback works!</p>
-<form>
-    <label for="name">Имя</label>
-    <input id="name">
-    <label for="email">Почта</label>
-    <input id="email" type="email">
-    <label for="message">Сообщение</label>
-    <textarea id="message"></textarea>
-    <button type="submit">Отправить</button>
+<form [formGroup]="feedbackForm">
+    <div class="form-group">
+        <label for="name">Имя</label>
+        <input id="name" [formControlName]="'name'">
+        <div class="form-error" *ngIf="feedbackForm.controls['name'].invalid && feedbackForm.controls['name'].touched">
+            Обязательно для заполнения!
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Почта</label>
+        <input id="email" type="email" [formControlName]="'email'">
+        <div class="form-error" *ngIf="feedbackForm.controls['email'].invalid && feedbackForm.controls['email'].touched">
+            Не соответствует формату email!
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="message">Сообщение</label>
+        <textarea id="message" [formControlName]="'message'"></textarea>
+        <div class="form-error" *ngIf="feedbackForm.controls['message'].invalid && feedbackForm.controls['message'].touched">
+            Обязательно для заполнения!
+        </div>
+    </div>
+    <button type="submit" [disabled]="feedbackForm.invalid" (click)="send(this.feedbackForm)">Отправить</button>
 </form>
